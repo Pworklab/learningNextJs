@@ -112,9 +112,7 @@ async function seedCustomers(client) {
       `,
       ),
     );
-
     console.log(`Seeded ${insertedCustomers.length} customers`);
-
     return {
       createTable,
       customers: insertedCustomers,
@@ -147,9 +145,7 @@ async function seedRevenue(client) {
       `,
       ),
     );
-
     console.log(`Seeded ${insertedRevenue.length} revenue`);
-
     return {
       createTable,
       revenue: insertedRevenue,
@@ -159,21 +155,3 @@ async function seedRevenue(client) {
     throw error;
   }
 }
-
-async function main() {
-  const client = await db.connect();
-
-  await seedUsers(client);
-  await seedCustomers(client);
-  await seedInvoices(client);
-  await seedRevenue(client);
-
-  await client.end();
-}
-
-main().catch((err) => {
-  console.error(
-    'An error occurred while attempting to seed the database:',
-    err,
-  );
-});
