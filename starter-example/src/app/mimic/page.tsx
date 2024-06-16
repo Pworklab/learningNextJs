@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from './header';
 import Footer from './footer';
-
+import Container from './container';
 export default function Page() {
   return (
     <body>
@@ -10,6 +10,11 @@ export default function Page() {
         <div>
           <Header />
         </div>
+
+      <div>
+      <Container />
+        
+      </div>
 
         <div>
           <Footer />
