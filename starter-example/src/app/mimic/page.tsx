@@ -3,7 +3,7 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import MainContainers from './container';
-import { PopularContainers } from './container';
+import { PopularContainers, NewContainers, TopContainer } from './container';
 export default function Page() {
   return (
     <body>
@@ -13,11 +13,9 @@ export default function Page() {
         </div>
 
         <div>
-          <MainContainers />
-        </div>
-
-        <div>
+          <TopContainer />
           <PopularContainers />
+          <NewContainers />
         </div>
 
         <div>
