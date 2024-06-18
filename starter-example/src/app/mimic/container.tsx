@@ -87,12 +87,11 @@ export function TopFeedsContainer() {
   return (
     <div className="flex flex-row justify-between">
       <div></div>
-
-      <div className=" bg-transparent">
+      <div className="overflow-auto bg-transparent">
         <div>
           <section className="pt-20">
             <div className="pb-20">
-              <div className="flex flex-col gap-6 overflow-auto sm:flex-row">
+              <div className="flex-x-auto  mx-20 flex flex-col gap-6 sm:flex-row">
                 {data.map((item) => (
                   <WideContainer
                     key={item.id} // Use a unique key for each item
@@ -108,13 +107,10 @@ export function TopFeedsContainer() {
           </section>
         </div>
       </div>
-
       <div></div>
     </div>
   );
 }
-//<div className="flex flex-col gap-6 overflow-x-auto sm:flex-row">
-
 //人気記事
 export function PopularFeedsContainer() {
   return (
