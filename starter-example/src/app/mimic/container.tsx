@@ -47,7 +47,7 @@ const data: ContainerProps[] = [
 function WideContainer({ imageUrl, category, content, date }: ContainerProps) {
   return (
     <div className="">
-      <div className="h-full w-[500px] rounded-lg bg-white shadow-md">
+      <div className="h-full w-[500px] rounded-lg bg-white drop-shadow-md">
         <img src={imageUrl} alt="Image" className=""></img>
         <div className="p-4">
           <span className="my-3 inline-block rounded-full bg-blue-500 px-3 py-2 text-sm font-semibold text-white">
@@ -66,8 +66,8 @@ function WideContainer({ imageUrl, category, content, date }: ContainerProps) {
 function Container({ imageUrl, category, content, date }: ContainerProps) {
   return (
     <div className="flex sm:justify-center">
-      <div className="h-full w-80 flex-auto rounded-lg bg-white shadow-md">
-        <img src={imageUrl} alt="Image" className="h-40 w-full "></img>
+      <div className="h-full w-80 flex-auto overflow-hidden rounded-lg bg-white shadow-md">
+        <img src={imageUrl} alt="Image" className="h-40 w-full"></img>
         <div className="">
           <span className="my-3 inline-block rounded-full bg-blue-500 p-2 px-3 py-2 text-sm font-semibold text-white">
             {category}
@@ -85,9 +85,9 @@ function Container({ imageUrl, category, content, date }: ContainerProps) {
 //目次記事
 export function TopFeedsContainer() {
   return (
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-row justify-between bg-transparent">
       <div></div>
-      <div className="overflow-auto bg-transparent">
+      <div className="overflow-auto ">
         <div>
           <section className="pt-20">
             <div className="pb-20">
@@ -123,7 +123,7 @@ export function PopularFeedsContainer() {
         </section>
         <section>
           <div className="flex justify-center pb-20">
-            <div className="flex flex-col gap-6 overflow-x-auto sm:flex-row">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
               {data.map((item) => (
                 <Container
                   key={item.id} //Use a unique key for each item
@@ -161,7 +161,7 @@ export function NewFeedsContainer() {
         </section>
         <section>
           <div className="flex justify-center pb-20">
-            <div className="center flex flex-col gap-6 overflow-x-auto sm:flex-row">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
               {data.map((item) => (
                 <Container
                   key={item.id} //Use a unique key for each item

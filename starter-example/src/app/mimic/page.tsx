@@ -10,7 +10,7 @@ import {
 } from './container';
 export default function Page() {
   return (
-    <body className="bg-blue-400">
+    <body className="bg-blue-100">
       <div className="flex h-screen flex-col justify-between">
         <div>
           <Header />
@@ -32,4 +32,4 @@ export default function Page() {
 
 //export default function Page() {
 //    return <p>Customer Page</p>;
-//  }
+//}
