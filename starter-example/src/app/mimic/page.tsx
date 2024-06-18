@@ -3,20 +3,24 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import MainContainers from './container';
-import { PopularContainers, NewContainers, TopContainer } from './container';
+import {
+  PopularFeedsContainer,
+  NewFeedsContainer,
+  TopFeedsContainer,
+} from './container';
 export default function Page() {
   return (
-    <body>
+    <body className="bg-blue-400">
       <div className="flex h-screen flex-col justify-between">
         <div>
           <Header />
         </div>
 
-        <div>
-          <TopContainer />
-          <PopularContainers />
-          <NewContainers />
-        </div>
+        <>
+          <TopFeedsContainer />
+          <PopularFeedsContainer />
+          <NewFeedsContainer />
+        </>
 
         <div>
           <Footer />

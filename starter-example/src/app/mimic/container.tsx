@@ -44,8 +44,24 @@ const data: ContainerProps[] = [
   },
 ];
 
-//     '何だかぐっとゴーシュを窓を云いずう。何たったにゴーシュへしてふしぎをなるんなく。下がわらわたまし。「楽⻑…',
-//      '上⼿だだんたはんまたおっかさんの⽣意気⼿のっきりがはしきりに気の毒たたて、何かもシュッへこすりせのました。',
+function WideContainer({ imageUrl, category, content, date }: ContainerProps) {
+  return (
+    <div className="">
+      <div className="h-full w-[500px] rounded-lg bg-white shadow-md">
+        <img src={imageUrl} alt="Image" className=""></img>
+        <div className="p-4">
+          <span className="my-3 inline-block rounded-full bg-blue-500 px-3 py-2 text-sm font-semibold text-white">
+            {category}
+          </span>
+          <p className="text-balance mt-4 line-clamp-3 text-gray-700">
+            {content}
+          </p>
+          <p className="mt-2 text-blue-500">{date}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Container({ imageUrl, category, content, date }: ContainerProps) {
   return (
@@ -66,128 +82,113 @@ function Container({ imageUrl, category, content, date }: ContainerProps) {
   );
 }
 
-function WideContainer({ imageUrl, category, content, date }: ContainerProps) {
+//目次記事
+export function TopFeedsContainer() {
   return (
-    <div className="flex sm:justify-center">
-      <div className="w-120 h-full min-w-min flex-auto rounded-lg bg-white shadow-md">
-        <img src={imageUrl} alt="Image" className="h-40 w-full "></img>
-        <div className="">
-          <span className="my-3 inline-block rounded-full bg-blue-500 p-2 px-3 py-2 text-sm font-semibold text-white">
-            {category}
-          </span>
-          <p className="text-balance text-ec mt-4 line-clamp-3 overflow-clip text-gray-700">
-            {content}
-          </p>
-          <p className="mt-2 text-blue-500">{date}</p>
+    <div className="flex flex-row justify-between">
+      <div></div>
+
+      <div className=" bg-transparent">
+        <div>
+          <section className="pt-20">
+            <div className="pb-20">
+              <div className="flex flex-col gap-6 overflow-auto sm:flex-row">
+                {data.map((item) => (
+                  <WideContainer
+                    key={item.id} // Use a unique key for each item
+                    id={item.id}
+                    imageUrl={item.imageUrl}
+                    category={item.category}
+                    content={item.content}
+                    date={item.date}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       </div>
-    </div>
-  );
-}
 
-function MainContainers() {
-  return (
-    <div>
-      <section className="overflow-auto bg-blue-50">
-        <h1 className="flex  font-extrabold text-blue-400">人気記事</h1>
-        <div className="flex flex-col  gap-4 overflow-auto sm:flex-row">
-          {data.map((item) => (
-            <Container
-              key={item.id} //Use a unique key for each item
-              id={item.id}
-              imageUrl={item.imageUrl}
-              category={item.category}
-              content={item.content}
-              date={item.date}
-            />
-          ))}
-        </div>
-        <div className="flex ">
-          <div className="box-border w-20 rounded-lg bg-blue-600 text-center text-white">
-            記事一覧
-          </div>
-        </div>
-      </section>
+      <div></div>
     </div>
   );
 }
+//<div className="flex flex-col gap-6 overflow-x-auto sm:flex-row">
 
 //人気記事
-export function PopularContainers() {
+export function PopularFeedsContainer() {
   return (
-    <div>
-      <section className="overflow-auto bg-blue-50">
-        <h1 className="flex  py-10 font-extrabold text-blue-400">人気記事</h1>
-        <div className="flex flex-col  gap-4 overflow-auto sm:flex-row">
-          {data.map((item) => (
-            <Container
-              key={item.id} //Use a unique key for each item
-              id={item.id}
-              imageUrl={item.imageUrl}
-              category={item.category}
-              content={item.content}
-              date={item.date}
-            />
-          ))}
-        </div>
-        <div className="flex ">
-          <div className="box-border w-20 rounded-lg bg-blue-600 py-5 text-center text-white">
-            記事一覧
+    <>
+      <div className="bg-white">
+        <section>
+          <h2 className="mb-6 py-6 text-center text-2xl font-bold text-blue-600">
+            人気記事
+          </h2>
+        </section>
+        <section>
+          <div className="flex justify-center pb-20">
+            <div className="flex flex-col gap-6 overflow-x-auto sm:flex-row">
+              {data.map((item) => (
+                <Container
+                  key={item.id} //Use a unique key for each item
+                  id={item.id}
+                  imageUrl={item.imageUrl}
+                  category={item.category}
+                  content={item.content}
+                  date={item.date}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
-  );
-}
-
-//新規記事
-export function NewContainers() {
-  return (
-    <div>
-      <section className="overflow-auto bg-blue-50">
-        <h1 className="flex  py-10 font-extrabold text-blue-400">新規記事</h1>
-        <div className="flex flex-col  gap-4 overflow-auto sm:flex-row">
-          {data.map((item) => (
-            <Container
-              key={item.id} //Use a unique key for each item
-              id={item.id}
-              imageUrl={item.imageUrl}
-              category={item.category}
-              content={item.content}
-              date={item.date}
-            />
-          ))}
-        </div>
-        <div className="flex ">
-          <div className="box-border w-20 rounded-lg bg-blue-600 py-5 text-center text-white">
-            記事一覧
+        </section>
+        <section>
+          <div className="mt-6 pb-10 text-center">
+            <button className="rounded-lg bg-blue-500 px-6  py-2 text-white">
+              記事一覧
+            </button>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 }
 
-//新規記事
-export function TopContainer() {
+//新着記事
+export function NewFeedsContainer() {
   return (
-    <div>
-      <section className="overflow-auto bg-blue-50">
-        <div className="flex flex-col  gap-4 overflow-auto sm:flex-row">
-          {data.map((item) => (
-            <WideContainer
-              key={item.id} //Use a unique key for each item
-              id={item.id}
-              imageUrl={item.imageUrl}
-              category={item.category}
-              content={item.content}
-              date={item.date}
-            />
-          ))}
-        </div>
-      </section>
-    </div>
+    <>
+      <div className="bg-white">
+        <section>
+          <h2 className="mb-6 py-6 text-center text-2xl font-bold text-blue-600">
+            新着記事
+          </h2>
+        </section>
+        <section>
+          <div className="flex justify-center pb-20">
+            <div className="center flex flex-col gap-6 overflow-x-auto sm:flex-row">
+              {data.map((item) => (
+                <Container
+                  key={item.id} //Use a unique key for each item
+                  id={item.id}
+                  imageUrl={item.imageUrl}
+                  category={item.category}
+                  content={item.content}
+                  date={item.date}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="mt-6 pb-10 text-center">
+            <button className="rounded-lg bg-blue-500 px-6  py-2 text-white">
+              記事一覧
+            </button>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }
 
-export default MainContainers;
+export default NewFeedsContainer;
