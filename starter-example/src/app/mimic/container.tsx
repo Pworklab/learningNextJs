@@ -50,7 +50,7 @@ function WideContainer({ imageUrl, category, content, date }: ContainerProps) {
       <div className="h-full w-full overflow-auto rounded-lg bg-white drop-shadow-md">
         <img src={imageUrl} alt="Image"></img>
         <div className="pl-5">
-          <span className="mt-2 inline-block rounded-full bg-blue-400 px-4 text-sm font-semibold text-white">
+          <span className="mt-5 inline-block rounded-full bg-blue-400 px-4 text-sm font-semibold text-white">
             {category}
           </span>
           <p className="text-balance mt-2 line-clamp-3 text-gray-700">
