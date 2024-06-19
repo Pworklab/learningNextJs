@@ -47,16 +47,16 @@ const data: ContainerProps[] = [
 function WideContainer({ imageUrl, category, content, date }: ContainerProps) {
   return (
     <div className="">
-      <div className="h-full w-[500px] rounded-lg bg-white drop-shadow-md">
-        <img src={imageUrl} alt="Image" className=""></img>
-        <div className="p-4">
-          <span className="my-3 inline-block rounded-full bg-blue-500 px-3 py-2 text-sm font-semibold text-white">
+      <div className="h-full w-full overflow-auto rounded-lg bg-white drop-shadow-md">
+        <img src={imageUrl} alt="Image"></img>
+        <div className="pl-5">
+          <span className="mt-2 inline-block rounded-full bg-blue-400 px-4 text-sm font-semibold text-white">
             {category}
           </span>
-          <p className="text-balance mt-4 line-clamp-3 text-gray-700">
+          <p className="text-balance mt-2 line-clamp-3 text-gray-700">
             {content}
           </p>
-          <p className="mt-2 text-blue-500">{date}</p>
+          <p className="my-2 text-blue-400">{date}</p>
         </div>
       </div>
     </div>
@@ -89,10 +89,10 @@ export function TopFeedsContainer() {
       <div></div>
       <div className="overflow-auto ">
         <div>
-          <section className="pt-20">
-            <div className="pb-20">
-              <div className="flex-x-auto  mx-20 flex flex-col gap-6 sm:flex-row">
-                {data.map((item) => (
+          <section className="pb-20 pt-20">
+            <div className="flex justify-center ">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
+                {data.slice(0, 2).map((item) => (
                   <WideContainer
                     key={item.id} // Use a unique key for each item
                     id={item.id}
