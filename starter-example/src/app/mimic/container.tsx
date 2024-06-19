@@ -1,10 +1,11 @@
+import Image from 'next/image'; // Ensure correct import if using Next.js
 import React from 'react';
 
 // test ここから、 使い回し出来るようにする
 
 // because on typeScript data should be explicit type or defined types
 interface ContainerProps {
-  imageUrl: string;
+  image: string;
   category: string;
   content: string;
   date: string;
@@ -13,21 +14,21 @@ interface ContainerProps {
 
 const data: ContainerProps[] = [
   {
-    imageUrl: '/test.png',
+    image: '/test.png',
     category: '人材採用',
     content: 'セロはこどものおみかい下らを楽屋がし次たん。',
     date: '2024.03.05',
     id: 'a0',
   },
   {
-    imageUrl: '/test.png',
+    image: '/test.png',
     category: '人材育成',
     content: 'またすこしまじめましないという楽譜ただ。',
     date: '2024.03.05',
     id: 'a1',
   },
   {
-    imageUrl: '/test.png',
+    image: '/test.png',
     category: '雇用管理',
     content:
       '何だかぐっとゴーシュを窓を云いずう。何たったにゴーシュへしてふしぎをなるんなく。下がわらわたまし。「楽⻑…',
@@ -35,7 +36,7 @@ const data: ContainerProps[] = [
     id: 'a2',
   },
   {
-    imageUrl: '/test.png',
+    image: '/test.png',
     category: '雇用管理',
     content:
       '何だかぐっとゴーシュを窓を云いずう。何たったにゴーシュへしてふしぎをなるんなく。下がわらわたまし。「楽⻑…',
@@ -44,11 +45,11 @@ const data: ContainerProps[] = [
   },
 ];
 
-function WideContainer({ imageUrl, category, content, date }: ContainerProps) {
+function WideContainer({ image, category, content, date }: ContainerProps) {
   return (
     <div className="">
       <div className="h-full w-full overflow-auto rounded-lg bg-white drop-shadow-md">
-        <img src={imageUrl} alt="Image"></img>
+        <img src={image} alt="Image"></img>
         <div className="pl-5">
           <span className="mt-5 inline-block rounded-full bg-blue-400 px-4 text-sm font-semibold text-white">
             {category}
@@ -63,11 +64,39 @@ function WideContainer({ imageUrl, category, content, date }: ContainerProps) {
   );
 }
 
-function Container({ imageUrl, category, content, date }: ContainerProps) {
+function MediaCard({ image, category, content, date }: ContainerProps) {
+  return (
+    <div className='bg-white drop-shadow-md rounded-lg overflow-hidden'>
+      <div className="h-60">
+        <Image
+          src={image}
+          alt={category} 
+          fill
+          className="max-h-60 object-cover"
+        />
+      </div>
+      <div className='flex-col-3  content mx-5 my-7 space-y-5'>
+          <div className="text-base bg-blue-400 text-white rounded-full inline-block px-4 py-0.5">
+          {category}
+          </div>
+          <div className='text-base font-bold'>
+            {content}
+          </div>
+          <div className='text-sm font-bold text-blue-400' >
+            {date}
+          </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+function Container({ image, category, content, date }: ContainerProps) {
   return (
     <div className="flex sm:justify-center">
       <div className="h-full w-80 flex-auto overflow-hidden rounded-lg bg-white shadow-md">
-        <img src={imageUrl} alt="Image" className="h-40 w-full"></img>
+        <img src={image} alt="Image" className="h-40 w-full"></img>
         <div className="">
           <span className="my-3 inline-block rounded-full bg-blue-500 p-2 px-3 py-2 text-sm font-semibold text-white">
             {category}
@@ -93,10 +122,10 @@ export function TopFeedsContainer() {
             <div className="flex justify-center ">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
                 {data.slice(0, 2).map((item) => (
-                  <WideContainer
+                  <MediaCard
                     key={item.id} // Use a unique key for each item
                     id={item.id}
-                    imageUrl={item.imageUrl}
+                    image={item.image}
                     category={item.category}
                     content={item.content}
                     date={item.date}
@@ -128,7 +157,7 @@ export function PopularFeedsContainer() {
                 <Container
                   key={item.id} //Use a unique key for each item
                   id={item.id}
-                  imageUrl={item.imageUrl}
+                  image={item.image}
                   category={item.category}
                   content={item.content}
                   date={item.date}
@@ -166,7 +195,7 @@ export function NewFeedsContainer() {
                 <Container
                   key={item.id} //Use a unique key for each item
                   id={item.id}
-                  imageUrl={item.imageUrl}
+                  image={item.image}
                   category={item.category}
                   content={item.content}
                   date={item.date}
@@ -186,5 +215,10 @@ export function NewFeedsContainer() {
     </>
   );
 }
+
+
+
+
+
 
 export default NewFeedsContainer;
