@@ -1,27 +1,22 @@
 import React from 'react';
-
 import Header from './header';
 import Footer from './footer';
-import MainContainers from './container';
-import {
-  PopularFeedsContainer,
-  NewFeedsContainer,
-  TopFeedsContainer,
-} from './container';
+import MainContainers, { FeedContainer } from './container';
+import { TopFeedsContainer, OriginButton, MyButton } from './container';
 export default function Page() {
   return (
-    <body className="bg-blue-100">
+    <body className="">
       <div className="flex h-screen flex-col justify-between">
         <div>
           <Header />
         </div>
-
         <>
           <TopFeedsContainer />
-          <PopularFeedsContainer />
-          <NewFeedsContainer />
+          <FeedContainer title="人気記事" />
+          <MyButton />
+          <FeedContainer title="新着記事" />
+          <MyButton />
         </>
-
         <div>
           <Footer />
         </div>
@@ -29,7 +24,6 @@ export default function Page() {
     </body>
   );
 }
-
 //export default function Page() {
 //    return <p>Customer Page</p>;
 //}

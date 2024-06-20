@@ -1,10 +1,11 @@
+'use client';
+
 import Image from 'next/image'; // Ensure correct import if using Next.js
 import React from 'react';
-
-// test ここから、 使い回し出来るようにする
+import { noto_sans } from '@/lib/fonts';
 
 // because on typeScript data should be explicit type or defined types
-interface ContainerProps {
+interface CardProps {
   image: string;
   category: string;
   content: string;
@@ -12,13 +13,29 @@ interface ContainerProps {
   id: string;
 }
 
-const data: ContainerProps[] = [
+interface ContainerProps {
+  title?: string;
+}
+
+interface ButtonPros {
+  title: string;
+}
+
+const data: CardProps[] = [
   {
     image: '/test.png',
     category: '人材採用',
     content: 'セロはこどものおみかい下らを楽屋がし次たん。',
     date: '2024.03.05',
     id: 'a0',
+  },
+  {
+    image: '/test.png',
+    category: '雇用管理',
+    content:
+      '何だかぐっとゴーシュを窓を云いずう。何たったにゴーシュへったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなったにゴーシュへしてふしぎをなるんなしてふしぎをなるんなく。下がわらわたまし。「楽⻑…',
+    date: '2024.03.05',
+    id: 'a2',
   },
   {
     image: '/test.png',
@@ -45,54 +62,100 @@ const data: ContainerProps[] = [
   },
 ];
 
-function WideContainer({ image, category, content, date }: ContainerProps) {
+// className={`${lusitana.className} text-xl text-green-400 md:text-3xl md:leading-normal
+//       className={`
+//${lusitana.className} text-xl text-green-400 md:text-3xl md:leading-normal
+//`}
+
+function MediaCard({ image, category, content, date }: CardProps) {
   return (
-    <div className="">
-      <div className="h-full w-full overflow-auto rounded-lg bg-white drop-shadow-md">
-        <img src={image} alt="Image"></img>
-        <div className="pl-5">
-          <span className="mt-5 inline-block rounded-full bg-blue-400 px-4 text-sm font-semibold text-white">
-            {category}
-          </span>
-          <p className="text-balance mt-2 line-clamp-3 text-gray-700">
-            {content}
-          </p>
-          <p className="my-2 text-blue-400">{date}</p>
+    <div
+      className={`${noto_sans.className} overflow-hidden rounded-lg bg-white drop-shadow-md`}
+    >
+      <div className="h-60">
+        <Image
+          src={image}
+          alt={category}
+          fill
+          className="max-h-60 object-cover"
+          blurDataURL="LEAAH[n%01W=snfQS4a|0KbH~Bni"
+          placeholder="blur"
+        />
+      </div>
+      <div className="flex-col-3  content mx-5 my-7 space-y-5">
+        <div className="inline-block rounded-full bg-blue-400 px-4 py-0.5 text-base text-white">
+          {category}
+        </div>
+        <div className="flex flex-col gap-5">
+          <div className="line-clamp-1 text-base font-bold">{content}</div>
+          <div className="text-sm font-bold text-blue-400">{date}</div>
         </div>
       </div>
     </div>
   );
 }
 
-function MediaCard({ image, category, content, date }: ContainerProps) {
+function MediaCardSmall({ image, category, content, date }: CardProps) {
   return (
-    <div className='bg-white drop-shadow-md rounded-lg overflow-hidden'>
+    <div
+      className={`${noto_sans.className} overflow-hidden rounded-lg bg-white drop-shadow-md`}
+    >
       <div className="h-60">
         <Image
           src={image}
-          alt={category} 
+          alt={category}
           fill
           className="max-h-60 object-cover"
+          blurDataURL="LEAAH[n%01W=snfQS4a|0KbH~Bni"
+          placeholder="blur"
         />
       </div>
-      <div className='flex-col-3  content mx-5 my-7 space-y-5'>
-          <div className="text-base bg-blue-400 text-white rounded-full inline-block px-4 py-0.5">
-          {category}
+      <div className="content mx-5 my-7 flex flex-col space-y-5">
+        <div className="flex">
+          <div className="rounded-full bg-blue-500 px-4 py-0.5 text-base text-white">
+            {category}
           </div>
-          <div className='text-base font-bold'>
-            {content}
-          </div>
-          <div className='text-sm font-bold text-blue-400' >
-            {date}
-          </div>
+        </div>
+        <div className="flex h-screen max-h-28 flex-col justify-between">
+          <div className="line-clamp-3 text-base font-bold">{content}</div>
+          <div className="text-sm text-blue-500">{date}</div>
+        </div>
       </div>
     </div>
   );
 }
 
+function MediaCardtest({ image, category, content, date }: CardProps) {
+  return (
+    <div
+      className={`${noto_sans.className} relative overflow-hidden rounded-lg bg-white drop-shadow-md`}
+    >
+      <div className="h-60">
+        <Image
+          src={image}
+          alt={category}
+          fill
+          className="max-h-60 object-cover"
+          blurDataURL="LEAAH[n%01W=snfQS4a|0KbH~Bni"
+          placeholder="blur"
+        />
+      </div>
+      <div className="mt-7 inline-block rounded-full bg-blue-400 px-4 py-0.5 text-base text-white">
+        {category}
+      </div>
 
+      <div className="line-clamp-3 bg-green-200 py-5 text-base font-bold">
+        {content}
+      </div>
 
-function Container({ image, category, content, date }: ContainerProps) {
+      <div className="bold absolute bottom-0 left-0 mt-5 flex bg-white  text-blue-400">
+        {date}
+      </div>
+    </div>
+  );
+}
+
+function Container({ image, category, content, date }: CardProps) {
   return (
     <div className="flex sm:justify-center">
       <div className="h-full w-80 flex-auto overflow-hidden rounded-lg bg-white shadow-md">
@@ -114,111 +177,79 @@ function Container({ image, category, content, date }: ContainerProps) {
 //目次記事
 export function TopFeedsContainer() {
   return (
-    <div className="flex flex-row justify-between bg-transparent">
-      <div></div>
-      <div className="overflow-auto ">
-        <div>
-          <section className="pb-20 pt-20">
-            <div className="flex justify-center ">
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
-                {data.slice(0, 2).map((item) => (
-                  <MediaCard
-                    key={item.id} // Use a unique key for each item
-                    id={item.id}
-                    image={item.image}
-                    category={item.category}
-                    content={item.content}
-                    date={item.date}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        </div>
+    <div className=" bg-blue-100">
+      <div className="">
+        <section className="mx-20 pb-12 pt-12">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-2">
+            {data.slice(0, 2).map((item) => (
+              <MediaCard
+                key={item.id}
+                id={item.id}
+                image={item.image}
+                category={item.category}
+                content={item.content}
+                date={item.date}
+              />
+            ))}
+          </div>
+        </section>
       </div>
-      <div></div>
     </div>
   );
 }
-//人気記事
-export function PopularFeedsContainer() {
+//
+//function MediaCard({ image, category, content, date }: ContainerProps) {
+export function FeedContainer({ title }: ContainerProps) {
   return (
-    <>
-      <div className="bg-white">
-        <section>
-          <h2 className="mb-6 py-6 text-center text-2xl font-bold text-blue-600">
-            人気記事
-          </h2>
-        </section>
-        <section>
-          <div className="flex justify-center pb-20">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {data.map((item) => (
-                <Container
-                  key={item.id} //Use a unique key for each item
-                  id={item.id}
-                  image={item.image}
-                  category={item.category}
-                  content={item.content}
-                  date={item.date}
-                />
-              ))}
-            </div>
+    <div className="bg-white pt-32">
+      <section>
+        <h2 className="pb-12 text-center text-2xl font-bold text-blue-600">
+          {title}
+        </h2>
+      </section>
+      <section>
+        <div className="mx-20 pb-12">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {data.map((item) => (
+              <MediaCardSmall
+                key={item.id}
+                id={item.id}
+                image={item.image}
+                category={item.category}
+                content={item.content}
+                date={item.date}
+              />
+            ))}
           </div>
-        </section>
-        <section>
-          <div className="mt-6 pb-10 text-center">
-            <button className="rounded-lg bg-blue-500 px-6  py-2 text-white">
-              記事一覧
-            </button>
-          </div>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+    </div>
   );
 }
 
-//新着記事
-export function NewFeedsContainer() {
+export const OriginButton: React.FC = () => {
+  const handleClick = () => {
+    console.log('Button was clicked!');
+  };
+
   return (
-    <>
-      <div className="bg-white">
-        <section>
-          <h2 className="mb-6 py-6 text-center text-2xl font-bold text-blue-600">
-            新着記事
-          </h2>
-        </section>
-        <section>
-          <div className="flex justify-center pb-20">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {data.map((item) => (
-                <Container
-                  key={item.id} //Use a unique key for each item
-                  id={item.id}
-                  image={item.image}
-                  category={item.category}
-                  content={item.content}
-                  date={item.date}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-        <section>
-          <div className="mt-6 pb-10 text-center">
-            <button className="rounded-lg bg-blue-500 px-6  py-2 text-white">
-              記事一覧
-            </button>
-          </div>
-        </section>
-      </div>
-    </>
+    <button onClick={handleClick} className="bg-green-200">
+      MyButton
+    </button>
+  );
+};
+
+export function MyButton() {
+  return (
+    <div className="">
+      <button
+        onClick={() => alert("I'm pressed")}
+        className="w-min-20 text-ms  mx-auto block overflow-clip rounded-lg bg-blue-400 p-2"
+      >
+        記事一覧
+      </button>
+    </div>
   );
 }
 
-
-
-
-
-
-export default NewFeedsContainer;
+export default FeedContainer;
