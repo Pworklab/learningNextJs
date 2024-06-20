@@ -17,10 +17,6 @@ interface ContainerProps {
   title?: string;
 }
 
-interface ButtonPros {
-  title: string;
-}
-
 const data: CardProps[] = [
   {
     image: '/test.png',
@@ -239,14 +235,29 @@ export const OriginButton: React.FC = () => {
   );
 };
 
-export function MyButton() {
+interface ButtonPros {
+  title: string;
+  debugbtn: (content: string, author: string) => void;
+}
+
+interface APIData {
+  content: string;
+  author: string;
+}
+export function MyButton({ title, debugbtn }: ButtonPros) {
+  const onButtonClick = async () => {
+    const result = await fetch('https://api.quotable.io/quotes/random');
+    const json = (await result.json()) as APIData[];
+    void debugbtn(json[0].content, json[0].author);
+  };
+
   return (
     <div className="">
       <button
-        onClick={() => alert("I'm pressed")}
+        onClick={onButtonClick}
         className="w-min-20 text-ms  mx-auto block overflow-clip rounded-lg bg-blue-400 p-2"
       >
-        記事一覧
+        {title}
       </button>
     </div>
   );
