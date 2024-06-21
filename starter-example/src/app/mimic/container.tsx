@@ -251,6 +251,7 @@ export function MyButton({ title, debugbtn }: ButtonPros) {
     void debugbtn(json[0].content, json[0].author);
   };
 
+  // mx auto makingit goes to mid
   return (
     <div className="">
       <button
